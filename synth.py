@@ -10,7 +10,6 @@ import argparse
 import numpy as np
 from scipy.io.wavfile import write
 import simpleaudio as sa
-from playsound import playsound
 
 class Synth:
     
