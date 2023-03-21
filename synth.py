@@ -10,6 +10,7 @@ import argparse
 import numpy as np
 from scipy.io.wavfile import write
 import simpleaudio as sa
+from playsound import playsound
 
 class Synth:
     
@@ -56,7 +57,9 @@ class Synth:
         render = np.asarray(self.output).flatten()
         render *= self.amplitude_limit_scale
         write("output.wav", self.fs, (np.iinfo(np.int16).max * render).astype(np.int16))
-        sa.WaveObject.from_wave_file("output.wav").play()
+
+        play_obj = sa.WaveObject.from_wave_file("output.wav").play()
+        play_obj.wait_done()
 
     def synth_sine(self, freq, duration):
         """Produce a sine wave"""
